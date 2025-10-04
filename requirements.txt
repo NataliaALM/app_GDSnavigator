@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+GEOparse
+matplotlib.pyplot
+seaborn
+scipy.cluster.hierarchy
+sklearn.decomposition
+sklearn.metrics
