@@ -5,4 +5,5 @@ GEOparse
 matplotlib
 seaborn
 scipy
-sklearn
+scikit-learn
+
