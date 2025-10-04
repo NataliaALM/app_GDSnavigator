@@ -2,8 +2,7 @@ streamlit
 pandas
 numpy
 GEOparse
-matplotlib.pyplot
+matplotlib
 seaborn
-scipy.cluster.hierarchy
-sklearn.decomposition
-sklearn.metrics
+scipy
+sklearn
