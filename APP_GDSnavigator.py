@@ -50,25 +50,25 @@ with col2:
             st.write("En la presente sección, se muestra una breve descripción de la base de datos. Primero, se puede ver la cabecera de los datos de expresión, donde los genes siempre se representan en las filas y las muestras o individuos en las columnas. A continuación, se muestra la cabecera de los metadatos o información clínica de los pacientes. Por último, se puede observar un gráfico de sectores con las frecuencias de la variable grupo y un boxplot por muestra para comrpobar que los datos están correctamente normalizados y escalados.")
             st.write("El usuario debe introducir el GDS que desea (se puede encontrar en LINK), así como la variable que define los grupos de pacientes.")
 
-            # Los identificadores de los genes deben ser los gene symbols
-            expr = expr_matrix.set_index("IDENTIFIER")
-            expr = expr.drop(columns=[c for c in expr.columns if not expr[c].dtype.kind in 'fi'])
-            expr_log = np.log2(expr + 1)
-
             def quantile_normalize(df):
 
-                sorted_df = np.sort(df.values, axis=0)
-                mean_ranks = np.mean(sorted_df, axis=1)
+            sorted_df = np.sort(df.values, axis=0)
+            mean_ranks = np.mean(sorted_df, axis=1)
     
-                ranks = np.apply_along_axis(lambda x: pd.Series(x).rank(method='min').values.astype(int)-1, 0, df.values)
-                df_qn = pd.DataFrame(np.zeros_like(df.values), index=df.index, columns=df.columns)
+            ranks = np.apply_along_axis(lambda x: pd.Series(x).rank(method='min').values.astype(int)-1, 0, df.values)
+            df_qn = pd.DataFrame(np.zeros_like(df.values), index=df.index, columns=df.columns)
     
-                for j, col in enumerate(df.columns):
-                    df_qn[col] = [mean_ranks[r] for r in ranks[:, j]]
+            for j, col in enumerate(df.columns):
+                df_qn[col] = [mean_ranks[r] for r in ranks[:, j]]
         
-                return df_qn
+            return df_qn
 
-            expr_log = quantile_normalize(expr_log)
+            expr_norm = quantile_normalize(expr_matrix)        
+            
+            # Los identificadores de los genes deben ser los gene symbols
+            expr = expr_norm.set_index("IDENTIFIER")
+            expr = expr_norm.drop(columns=[c for c in expr_norm.columns if not expr_norm[c].dtype.kind in 'fi'])
+            expr_log = np.log2(expr_norm + 1)
 
             # Mostrar la matriz de expresión
             st.subheader("Cabecera de la matriz de expresión escalada")
