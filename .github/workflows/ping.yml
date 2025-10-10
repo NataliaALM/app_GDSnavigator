@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Ping the Streamlit app
         run: |
-          curl -I https://appgdsnavigator-7ueln6kxjeaff8yzmcsqpe.streamlit.app/
+          curl -s https://appgdsnavigator-7ueln6kxjeaff8yzmcsqpe.streamlit.app/ > /dev/null
