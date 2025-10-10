@@ -118,7 +118,7 @@ with col2:
 
         with tabs[1]:
             st.header("Expresión de los genes con mayor variabilidad en los grupos de pacientes")
-            st.write("Uno claro factor observable a partir de datos transcriptómicos para encontrar diferencias entre pacientes e individuos sanos es estudiar la expresión génica de estos. Por ello, \nen esta sección exploraremos la expresión de los 30 genes con más varianza a través de las categoŕias definidas en la variable grupo.")
+            st.write("Uno claro factor observable a partir de datos transcriptómicos para encontrar diferencias entre pacientes e individuos sanos es estudiar la expresión génica de estos. Por ello, \nen esta sección exploraremos la expresión de los 30 genes con más varianza a través de las categoŕias definidas en la variable grupo. Los genes asociados a tonos rojizos intensos son los que presentan valores altos de expresión génica, mientras que los tonos azulados representan valores bajos.")
 
             # Heatmap solo con top 30 genes más variables (para poder visualizarlo en el heatmap)
             top_genes = expr_log.var(axis=1).sort_values(ascending=False).head(50).index
