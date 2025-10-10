@@ -37,19 +37,19 @@ with col1:
 # Segunda columna (Colocada a la derecha)
 # -------------------------------
 with col2:
+    #if gds_id:
+    tabs = st.tabs(["Exploración de los datos", "Expresión de los genes con más variabilidad", "Clustering Jerárquico", "PCA"])
+
+    # Sección 1: Exploración de los datos
+    with tabs[0]:
+        # Definir la matriz de expresión
+        expr_matrix = data.table
+
+        st.subheader("Introducción")
+        st.write("GDSnavigator es una aplicación para analizar bases de datos GDS que se encuentran almacenadas en el repositorio Gene Expression Omnibus (GEO). Este análisis incluye una breve exploración de los datos, el análisis de los genes con más variabilidad en los grupos de pacientes que el usuario desee, así como la búsqueda de patrones génicos aplicando el método estadístico clustering jerárquico y la técnica de Análisis de Componentes Principales (PCA).")
+        st.write("En la presente sección, se muestra una breve descripción de la base de datos. Primero, se puede ver la cabecera de los datos de expresión, donde los genes siempre se representan en las filas y las muestras o individuos en las columnas. A continuación, se muestra la cabecera de los metadatos o información clínica de los pacientes. Por último, se puede observar un gráfico de sectores con las frecuencias de la variable grupo y un boxplot por muestra para comrpobar que los datos están correctamente normalizados y escalados.")
+        st.write("El usuario debe introducir el GDS que desea (se puede encontrar en LINK), así como la variable que define los grupos de pacientes.")
     if gds_id:
-        tabs = st.tabs(["Exploración de los datos", "Expresión de los genes con más variabilidad", "Clustering Jerárquico", "PCA"])
-
-        # Sección 1: Exploración de los datos
-        with tabs[0]:
-            # Definir la matriz de expresión
-            expr_matrix = data.table
-
-            st.subheader("Introducción")
-            st.write("GDSnavigator es una aplicación para analizar bases de datos GDS que se encuentran almacenadas en el repositorio Gene Expression Omnibus (GEO). Este análisis incluye una breve exploración de los datos, el análisis de los genes con más variabilidad en los grupos de pacientes que el usuario desee, así como la búsqueda de patrones génicos aplicando el método estadístico clustering jerárquico y la técnica de Análisis de Componentes Principales (PCA).")
-            st.write("En la presente sección, se muestra una breve descripción de la base de datos. Primero, se puede ver la cabecera de los datos de expresión, donde los genes siempre se representan en las filas y las muestras o individuos en las columnas. A continuación, se muestra la cabecera de los metadatos o información clínica de los pacientes. Por último, se puede observar un gráfico de sectores con las frecuencias de la variable grupo y un boxplot por muestra para comrpobar que los datos están correctamente normalizados y escalados.")
-            st.write("El usuario debe introducir el GDS que desea (se puede encontrar en LINK), así como la variable que define los grupos de pacientes.")
-
             # Los identificadores de los genes deben ser los gene symbols
             expr = expr_matrix.set_index("IDENTIFIER")
             expr = expr.drop(columns=[c for c in expr.columns if not expr[c].dtype.kind in 'fi'])
