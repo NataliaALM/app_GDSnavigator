@@ -121,13 +121,13 @@ with col2:
             st.write("Uno claro factor observable a partir de datos transcriptómicos para encontrar diferencias entre pacientes e individuos sanos es estudiar la expresión génica de estos. Por ello, \nen esta sección exploraremos la expresión de los 30 genes con más varianza a través de las categoŕias definidas en la variable grupo. Los genes asociados a tonos rojizos intensos son los que presentan valores altos de expresión génica, mientras que los tonos azulados representan valores bajos.")
 
             # Heatmap solo con top 30 genes más variables (para poder visualizarlo en el heatmap)
-            top_genes = expr_log.var(axis=1).sort_values(ascending=False).head(50).index
+            top_genes = expr_log.var(axis=1).sort_values(ascending=False).head(30).index
             expr_top = expr_log.loc[top_genes]
             group_colors = {g: c for g, c in zip(metadata[variable_interes].unique(), sns.color_palette("Set2", len(metadata[variable_interes].unique())))}
             row_colors = metadata[variable_interes].map(group_colors)
 
             st.subheader("Heatmap de la expresión génica con los top 30 genes más variables")
-            heat50 = sns.clustermap(
+            heat30 = sns.clustermap(
                 expr_top.T,  # muestras x genes
                 row_cluster=True,
                 col_cluster=True,
@@ -138,7 +138,7 @@ with col2:
             )
             # Añadir leyenda manualmente
             handles = [Patch(facecolor=color, label=label) for label, color in group_colors.items()]
-            heat50.ax_row_dendrogram.legend(
+            heat30.ax_row_dendrogram.legend(
             handles=handles,
             title=variable_interes,
             bbox_to_anchor=(1,1),
