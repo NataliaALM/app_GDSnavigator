@@ -5,9 +5,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch 
 import seaborn as sns 
-import linkage, dendrogram, fcluster from scipy.cluster.hierarchy
-import PCA from sklearn.decomposition
-import silhouette_score from sklearn.metrics 
+from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
+from sklearn.decomposition import PCA 
+from sklearn.metrics import silhouette_score 
 
 st.set_page_config(
     page_title="GDSnavigator",
