@@ -27,7 +27,8 @@ with col1:
     gds_id = st.text_input("Introduzca el ID del GDS que desea analizar", value="")
     if gds_id:
         st.info(f"Descargando y procesando {gds_id}... Esto puede tardar unos segundos.")
-        data = GEOparse.get_GEO(geo=gds_id, destdir="./home/natalia/scripts/TFM_UEMC/")
+        os.makedirs("./data", exist_ok=True) # Crear una carpeta para el almacenamiento temporal de los datos
+        data = GEOparse.get_GEO(geo=gds_id, destdir="./data/")
         st.success(f"GDS {gds_id} descargado correctamente")
             # 3️⃣ Selector de variable de interés
         metadata = data.columns
