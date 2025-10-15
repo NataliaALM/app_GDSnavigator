@@ -3,7 +3,7 @@ import GEOparse
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import Patch from matplotlib.patches 
+from matplotlib.patches import Patch 
 import seaborn as sns 
 import linkage, dendrogram, fcluster from scipy.cluster.hierarchy
 import PCA from sklearn.decomposition
