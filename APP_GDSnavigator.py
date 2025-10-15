@@ -11,7 +11,7 @@ from sklearn.metrics import silhouette_score
 
 st.set_page_config(
     page_title="GDSnavigator",
-    layout="wide",  # ancho completo
+    layout="wide",  
     initial_sidebar_state="expanded"
 )
 
