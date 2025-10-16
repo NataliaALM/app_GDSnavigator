@@ -31,7 +31,7 @@ with col1:
         os.makedirs("./data", exist_ok=True) # Crear una carpeta para el almacenamiento temporal de los datos
         data = GEOparse.get_GEO(geo=gds_id, destdir="./data/")
         st.success(f"GDS {gds_id} descargado correctamente")
-            # 3️⃣ Selector de variable de interés
+            # Selector de variable de interés
         metadata = data.columns
         # El usuario selecciona entre las opciones propuestas (las variables clínicas del usuario)
         variable_interes = st.selectbox(
